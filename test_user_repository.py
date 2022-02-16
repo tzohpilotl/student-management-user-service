@@ -12,3 +12,8 @@ class TestUserRepository(unittest.TestCase):
     def test_creatingANewUser_shouldBeOk(self):
         result = self.user_repository.create({'username': 'mario'})
         self.assertTrue(result.is_ok())
+
+    def test_creatingDuplicatedUsers_shouldBeAnError(self):
+        result_1 = self.user_repository.create({'username': 'mario'})
+        result_2 = self.user_repository.create({'username': 'mario'})
+        self.assertTrue(result_2.is_error())

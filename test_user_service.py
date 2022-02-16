@@ -32,14 +32,3 @@ class TestUserServiceRoles(unittest.TestCase):
         self.assertTrue(user_service.register_admin({}).is_ok())
         self.assertTrue(user_service.deregister_admin('adminId').is_ok())
         self.assertTrue(user_service.update_admin({}, 'adminId').is_ok())
-
-
-class TestAdminUserService(unittest.TestCase):
-    def setUp(self) -> None:
-        mock_repositories = create_database()
-        self.user_service = UserService.create_user(
-            mock_admin, mock_repositories)
-
-    def test_when_anAdminCreatesAStudent_theRequestIsHandledCorrectly(self):
-        result = self.user_service.register_student(mock_student)
-        self.assertTrue(result.is_ok())
