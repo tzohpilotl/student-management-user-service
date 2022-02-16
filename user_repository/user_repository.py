@@ -1,4 +1,3 @@
-import sys
 import user_repository
 from expression import Error, Ok
 
