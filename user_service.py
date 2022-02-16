@@ -34,10 +34,10 @@ class Admin(object):
 
 class Root(Admin):
     def register_admin(self, admin):
-        return Ok('pass')
+        return self.User.create(admin)
 
-    def deregister_admin(self, adminId):
-        return Ok('pass')
+    def deregister_admin(self, id):
+        return self.User.delete(id)
 
     def update_admin(self, update, adminId):
         return Ok('pass')
