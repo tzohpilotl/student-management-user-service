@@ -1,5 +1,6 @@
-from expression import Error, Ok
+import sys
 import user_repository
+from expression import Error, Ok
 
 
 class UnknownRepositoryError(Exception):
@@ -9,15 +10,22 @@ class UnknownRepositoryError(Exception):
 
 
 class UserRepository(object):
-    def __init__(self, database) -> None:
-        self.database = database
+    def __init__(self, models) -> None:
+        self.User = models['User']
 
     def create(self, user):
         try:
-            self.database['User'].create(username=user['username'])
+            self.User.create(username=user['username'])
             return Ok('user created successfully')
         except:
             return Error(UnknownRepositoryError('create new user'))
+
+    def delete(self, id):
+        try:
+            self.User.delete().where(self.User.username == id).execute()
+            return Ok('user deleted successfully')
+        except:
+            return Error(UnknownRepositoryError('delete user'))
 
 
 def create_user_repository(database):

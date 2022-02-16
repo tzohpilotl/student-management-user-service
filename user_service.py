@@ -1,5 +1,5 @@
 from expression import Ok, Error
-from user_repository.user_repository import create_user_repository
+from user_repository.user_repository import UnknownRepositoryError, create_user_repository
 
 
 class AuthorizationError(Exception):
@@ -11,13 +11,13 @@ class AuthorizationError(Exception):
 class Admin(object):
     def __init__(self, credentials={}, repositories={}):
         self.credentials = credentials
-        self.repositories = repositories
+        self.User = repositories['User']
 
     def register_student(self, student):
-        return self.repositories['User'].create(student)
+        return self.User.create(student)
 
-    def deregister_student(self, studentId):
-        return Ok('pass')
+    def deregister_student(self, id):
+        return self.User.delete(id)
 
     def update_student(self, update, studentId):
         return Ok('pass')
