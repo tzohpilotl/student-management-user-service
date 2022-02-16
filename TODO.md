@@ -1,0 +1,2 @@
+- [ ] Split the general "User" table into "Student" and "Admin" tables
+- [ ] Create a separate repository for every database table
