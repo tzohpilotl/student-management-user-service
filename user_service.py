@@ -1,5 +1,5 @@
 from expression import Ok, Error
-from user_repository.user_repository import UnknownRepositoryError, create_user_repository
+from user_repository.user_repository import create_user_repository
 
 
 class AuthorizationError(Exception):
